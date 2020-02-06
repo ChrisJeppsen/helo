@@ -22,9 +22,10 @@ app.use(cors())
 app.post('/auth/register', ctrl.register)
 app.post('/auth/login', ctrl.login)
 app.delete('/auth/logout', ctrl.logout)
-app.get('/auth/getUser', ctrl.getUser)
+app.get('/auth/user', ctrl.getUser)
 
 app.post('/api/addpost', ctrl.addPost)
+app.get('/api/post', ctrl.getPost)
 
 
 

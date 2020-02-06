@@ -34,11 +34,11 @@ module.exports = {
 
         delete user[0].password;
         req.session.user = user[0];
-        console.log(req.session.user)
+        // console.log(req.session.user)
         res.status(202).send(req.session.user);
     },
     getUser: (req, res) => {
-        console.log(req)
+        // console.log(req)
         if(req.session.user) {
             res.status(200).send(req.session.user)
         } else {
@@ -50,7 +50,7 @@ module.exports = {
         res.sendStatus(200)
     },
     addPost: (req, res) => {
-        const db = reeq.app.get('db')
+        const db = req.app.get('db')
         const {id} = req.session.user;
         const {image, title, content} = req.body;
 
@@ -60,9 +60,11 @@ module.exports = {
     },
     getPost: (req, res) => {
         const db = req.app.get('db')
-        const {postId} = req.session.user
-        db.get_post(postId).then(data => {
-            res.status(200).send(data[0])
+        const {id} = req.session.user
+        console.log(id)
+        db.get_post(id).then(data => {
+            console.log(data)
+            res.status(200).send(data)
         })
     }
 }
